@@ -1,5 +1,4 @@
 class Movie < ActiveRecord::Base
   validates :title, :presence => true
-  validates :director_id, :presence => true, :numericality => true
-  validates :duration, :presence => true, :numericality => true
+  validates :director_id, :presence => true
 end

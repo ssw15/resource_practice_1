@@ -2,11 +2,14 @@
   <h1>Add A New Movie</h1>
 </div>
 
+<ul>
 <% @movie.errors.full_messages.each do |msg| %>
-  <p><%= msg %></p>
+  <li><%= msg %></li>
 <% end %>
+</ul>
 
-<form action="/create_movie" class="form-horizontal">
+<!-- <form action="/create_movie" class="form-horizontal" method="post"> -->
+<%= form_tag(movies_url, :class => "form-horizontal", :method => "post") do %>
   <!-- Label and input for title -->
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">
@@ -70,6 +73,10 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <input type="submit" value="Create Movie" class="btn btn-primary">
+      or
+      <%= link_to "Cancel", movies_path %>
     </div>
   </div>
-</form>
+<% end %>
+
+<!-- </form> -->

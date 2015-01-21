@@ -7,11 +7,11 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  def new_form
+  def new
     @movie = Movie.new
   end
 
-  def create_row
+  def create
     @movie = Movie.new
 
     @movie.title = params[:title]
@@ -22,17 +22,17 @@ class MoviesController < ApplicationController
     @movie.director_id = params[:director_id]
 
     if @movie.save
-      redirect_to("http://localhost:3000/movies", :notice => "Successfully added movie.")
+      redirect_to movies_url, :notice => "Successfully created movie."
     else
-      render('new_form')
+      render 'new'
     end
   end
 
-  def edit_form
+  def edit
     @movie = Movie.find(params[:id])
   end
 
-  def update_row
+  def update
     @movie = Movie.find(params[:id])
 
     @movie.title = params[:title]
@@ -43,9 +43,9 @@ class MoviesController < ApplicationController
     @movie.director_id = params[:director_id]
 
     if @movie.save
-      redirect_to("http://localhost:3000/movies/#{@movie.id}", :notice => "Successfully updated #{@movie.title}.")
+      redirect_to movie_url(@movie.id), :notice => "Successfully updated movie."
     else
-      render('edit_form')
+      render 'edit'
     end
   end
 
@@ -54,6 +54,6 @@ class MoviesController < ApplicationController
 
     @movie.destroy
 
-    redirect_to "http://localhost:3000/movies", :notice => "Successfully deleted movie."
+    redirect_to movies_url, :notice => "Successfully deleted movie."
   end
 end

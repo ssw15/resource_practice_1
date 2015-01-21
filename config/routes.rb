@@ -2,6 +2,37 @@ Rails.application.routes.draw do
   # Route for bare domain:
   get('/', { :controller => 'movies', :action => 'index' })
 
+  # Final version of RESTful routes for the Movie resource:
+  # CREATE
+  get '/movies/new',        :controller => 'movies',
+                            :action => 'new',
+                            :as => "new_movie"
+
+  post '/movies',           :controller => 'movies',
+                            :action => 'create',
+                            :as => "movies"
+
+  # READ
+  get '/movies',            :controller => 'movies',
+                            :action => 'index'
+
+  get '/movies/:id',        :controller => 'movies',
+                            :action => 'show',
+                            :as => "movie"
+
+  # UPDATE
+  get '/movies/:id/edit',   :controller => 'movies',
+                            :action => 'edit',
+                            :as => "edit_movie"
+
+  patch '/movies/:id',      :controller => 'movies',
+                            :action => 'update'
+
+  # DELETE
+  delete '/movies/:id',     :controller => 'movies',
+                            :action => 'destroy'
+  #------------------------------
+
   # Routes for the Director resource:
   # CREATE
   get('/directors/new_form', { :controller => 'directors', :action => 'new_form' })
@@ -17,23 +48,6 @@ Rails.application.routes.draw do
 
   # DELETE
   get('/delete_director/:id', { :controller => 'directors', :action => 'destroy' })
-  #------------------------------
-
-  # Routes for the Movie resource:
-  # CREATE
-  get('/movies/new_form', { :controller => 'movies', :action => 'new_form' })
-  get('/create_movie', { :controller => 'movies', :action => 'create_row' })
-
-  # READ
-  get('/movies', { :controller => 'movies', :action => 'index' })
-  get('/movies/:id', { :controller => 'movies', :action => 'show' })
-
-  # UPDATE
-  get('/movies/:id/edit_form', { :controller => 'movies', :action => 'edit_form' })
-  get('/update_movie/:id', { :controller => 'movies', :action => 'update_row' })
-
-  # DELETE
-  get('/delete_movie/:id', { :controller => 'movies', :action => 'destroy' })
   #------------------------------
 
   # Routes for the Role resource:
