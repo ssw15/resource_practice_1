@@ -2,6 +2,10 @@
   <h1>Edit Movie #<%= @movie.id %></h1>
 </div>
 
+<% @movie.errors.full_messages.each do |msg| %>
+  <p><%= msg %></p>
+<% end %>
+
 <form action="/update_movie/<%= @movie.id %>" class="form-horizontal">
   <!-- Label and input for title -->
   <div class="form-group">
